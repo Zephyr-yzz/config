@@ -1,53 +1,3 @@
-call plug#begin('~/.vim/plugged')
-Plug 'preservim/nerdtree'
-map <C-n> :NERDTreeToggle<CR>
-
-Plug'ctrlpvim/ctrlp.vim'
-
-Plug'mileszs/ack.vim'
-
-Plug'easymotion/vim-easymotion'
-
-Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
-" lightline
-"let g:lightline = {
-	      \ 'colorscheme': 'gruvbox',
-      \ 'active': {
-	      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ],
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'percent' ],
-      \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
-      \ },
-      \ 'tabline': {
-	      \   'left': [ ['buffers'] ],
-      \   'right': [ ['close'] ]
-      \ },
-      \ 'component_expand': {
-	      \   'buffers': 'lightline#bufferline#buffers'
-      \ },
-      \ 'component_type': {
-	      \   'buffers': 'tabsel'
-      \ },
-      \ 'separator': {'left': ' ', 'right': ' '},
-      \ 'subseparator': {'left': ' ', 'right': ' '}
-      \ }all
-" bufferline
-let g:lightline#bufferline#enable_devicons = 1
-let g:lightline#bufferline#enable_nerdfont = 1
-let g:lightline#bufferline#icon_position = 'right'
-let g:lightline#bufferline#show_number = 3
-
-let g:lightline#bufferline#number_map = {
-			\ 0: '⁰', 1: '¹ ', 2: '² ', 3: '³ ', 4: '⁴ ',
-			\ 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹'}
-
-function LightlineBufferlineFilter(buffer)
-	  return getbufvar(a:buffer, '&buftype') !=# 'terminal'
-  endfunction
-  let g:lightline#bufferline#buffer_filter = "LightlineBufferlineFilter"
-
-call plug#end()
 " Comments in Vimscript start with a `"`.
 
 " If you open this file in Vim, it'll be syntax highlighted for you.
@@ -57,7 +7,7 @@ call plug#end()
 " configuration option turns out not to be necessary for the file named
 " '~/.vimrc', because Vim automatically enters nocompatible mode if that file
 " is present. But we're including it here just in case this config file is
-" loaded some other way (e.g. saved as `foo`, and then Vim started with
+" loaded some other way (e.g. saved as `foo`, and then Vim started with 
 " `vim -u foo`).
 set nocompatible
 
@@ -128,3 +78,76 @@ inoremap <Left>  <ESC>:echoe "Use h"<CR>
 inoremap <Right> <ESC>:echoe "Use l"<CR>
 inoremap <Up>    <ESC>:echoe "Use k"<CR>
 inoremap <Down>  <ESC>:echoe "Use j"<CR>
+
+"undofile
+set undofile
+set undodir=~/.vim/undodir
+
+"tab=2
+set tabstop=2
+set shiftwidth=2
+set expandtab
+"esc=jj
+inoremap jj <Esc>`^
+
+call plug#begin('~/.vim/plugged')
+Plug 'preservim/nerdtree'
+map <C-n> :NERDTreeToggle<CR>
+
+Plug 'mbbill/undotree'
+nnoremap<C-u> :UndotreeToggle<cr>
+
+Plug 'majutsushi/tagbar'
+map<silent> <C-t> :TagbarToggle<CR>
+let g:tagbar_width = 25
+
+Plug 'vim-scripts/a.vim'
+let g:A_Binding = '<Leader>'
+
+Plug 'ctrlpvim/ctrlp.vim'
+
+Plug 'mileszs/ack.vim'
+
+Plug 'easymotion/vim-easymotion'
+nmap ss <Plug>(easymotion-s2)
+
+Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
+" lightline
+"let g:lightline = {
+	      \ 'colorscheme': 'gruvbox',
+      \ 'active': {
+	      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'alpercent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
+      \ },
+      \ 'tabline': {
+	      \   'left': [ ['buffers'] ],
+      \   'right': [ ['close'] ]
+      \ },
+      \ 'component_expand': {
+	      \   'buffers': 'lightline#bufferline#buffers'
+      \ },
+      \ 'component_type': {
+	      \   'buffers': 'tabsel'
+      \ },
+      \ 'separator': {'left': ' ', 'right': ' '},
+      \ 'subseparator': {'left': ' ', 'right': ' '}
+      \ }all
+" bufferline
+let g:lightline#bufferline#enable_devicons = 1
+let g:lightline#bufferline#enable_nerdfont = 1
+let g:lightline#bufferline#icon_position = 'right'
+let g:lightline#bufferline#show_number = 3
+
+let g:lightline#bufferline#number_map = {
+			\ 0: '⁰', 1: '¹ ', 2: '² ', 3: '³ ', 4: '⁴ ',
+			\ 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹'}
+
+function LightlineBufferlineFilter(buffer)
+	  return getbufvar(a:buffer, '&buftype') !=# 'terminal'
+  endfunction
+  let g:lightline#bufferline#buffer_filter = "LightlineBufferlineFilter"
+
+call plug#end()
