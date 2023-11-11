@@ -90,6 +90,9 @@ set expandtab
 "esc=jj
 inoremap jj <Esc>`^
 
+"//
+map + I//
+
 call plug#begin('~/.vim/plugged')
 Plug 'preservim/nerdtree'
 map <C-n> :NERDTreeToggle<CR>
@@ -103,6 +106,8 @@ let g:tagbar_width = 25
 
 Plug 'vim-scripts/a.vim'
 let g:A_Binding = '<Leader>'
+
+Plug 'tpope/vim-commentary'
 
 Plug 'ctrlpvim/ctrlp.vim'
 

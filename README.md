@@ -41,6 +41,8 @@ sudo apt-get install zsh-theme-powerlevel9k
 sudo apt-get install vim
 sudo apt-get install tmux
 
+##
+chsh -s /bin/zsh
 ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local
 <!-- Please modify .tmux.conf.local to change the tmux configuration. -->
